@@ -18,14 +18,14 @@
 {{ macros_head::resource() }}
 {{ macros_head::stylesheet() }}
 
-{% if page -%}
+{%- if page -%}
   {% set resource = page -%}
-{% elif section -%}
-  {% set resource = section -%}
-{% else %}
-  {# non section or page, eg. 404 #}
-  set resource = null
-{% endif -%}
+{%- elif section -%}
+  {%- set resource = section -%}
+{%- else -%}
+  {#- non section or page, eg. 404 -#}
+  {%- set resource = false -%}
+{%- endif -%}
 
 {% if resource.relative_path -%}
   {% set current_section = resource.relative_path | split(pat="/") | nth(n=1) -%}
