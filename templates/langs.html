@@ -15,11 +15,11 @@
           {{ resource.content | safe }}
 
           <div class="text-center m-5">
-
-              {% for trans in resource.translations %}
-              <a href="{{trans.permalink}}" class="btn btn-outline-secondary d-inline-flex align-items-center  fs-1">{{trans.lang}} &rarr;</a>
-              {% endfor %}
-            </div>
+          {%- for trans in resource.translations -%}
+            {%- if trans.lang == config.default_language %}{% continue %}{% endif -%}
+              <a href="{{trans.permalink | safe}}" class="btn btn-outline-secondary d-inline-flex align-items-center  fs-1">{{trans.lang}} &rarr;</a>
+          {% endfor -%}
+          </div>
         </article>
       </div>
     </div>
